@@ -1,0 +1,24 @@
+.imgBlock{
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    background-color: rgba(137, 135, 134, 0.014);
+}
+
+div.smoll_img_block{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(137, 135, 134, 0.014);
+}
+
+
+img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}

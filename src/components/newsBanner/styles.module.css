@@ -1,0 +1,17 @@
+.newsBanner{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+
+.title{
+    font-size: 4vw;
+    margin-bottom: 5px;
+}
+
+.footer{
+    font-size: clamp(0.75rem, 0.602rem + 0.74vw, 1.25rem);
+    margin-bottom: 5px;
+}

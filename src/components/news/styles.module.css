@@ -1,0 +1,28 @@
+.news{
+    display: flex;
+    gap: 16px;
+}
+
+.news_img_block{
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+}
+
+
+
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+}
+footer{
+    font-size: clamp(0.75rem, 0.602rem + 0.74vw, 1.25rem);
+}
+
+
+
+
+
+
