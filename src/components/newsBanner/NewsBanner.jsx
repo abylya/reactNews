@@ -11,9 +11,9 @@ export default function NewsBanner({ item }) {
 
       <footer className={styles.footer}>
         <time dateTime={item.publish_date}>
-          {formatTimeAgo(item.publish_date)}
+          {formatTimeAgo(item.publish_date)+" "}
         </time>
-        Автор: <cite>{item.author || "anonim"}</cite>
+          Автор: <cite>{item.author || "anonim"}</cite>
       </footer>
     </div>
   );

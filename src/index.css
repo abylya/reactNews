@@ -46,15 +46,15 @@ main {
    margin: 0;
  }
  h2 {
-  font-size: clamp(1.375rem, 0.116rem + 6.3vw, 5.625rem);
+  font-size: clamp(1.25rem, 0.046rem + 6.02vw, 5.313rem);
    margin: 0;
  }
  h3 {
-   font-size: clamp(1.25rem, 0.139rem + 5.56vw, 5rem);
+   font-size: clamp(1.125rem, 0.162rem + 4.81vw, 4.375rem);
    margin: 0;
  }
  h4 {
-   font-size: clamp(1.125rem, 0.162rem + 4.81vw, 4.375rem);
+   font-size: clamp(1rem, 0.185rem + 4.07vw, 3.75rem);
    margin: 0;
  }
  
@@ -362,4 +362,8 @@ template {
 
 [hidden] {
   display: none;
+}
+
+ul{
+  list-style: none;
 }
