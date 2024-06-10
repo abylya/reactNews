@@ -12,7 +12,7 @@ export default function News({news}) {
 
         <footer className={styles.footer}>
           <time dateTime={news.publish_date}>
-            {formatTimeAgo(news.publish_date)}
+            {formatTimeAgo(news.publish_date)+" "}
           </time>
           Автор: <cite>{news.author || "anonim"}</cite>
         </footer>
