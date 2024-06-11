@@ -1,0 +1,29 @@
+.paginationBox{
+    display: flex;
+    justify-content: center;
+    gap:8px;
+}
+
+button{
+    padding: 8px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+button:disabled{
+    cursor: default;
+}
+
+/* button[class^='arrow_left']{
+  margin-right: 12px;
+}
+
+button[class='arrow_right']{
+    margin-left: 12px;
+} */
+
+.list{
+    display: flex;
+    gap: 5px;
+}
