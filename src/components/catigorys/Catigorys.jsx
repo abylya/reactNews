@@ -1,8 +1,8 @@
 import styles from "./styles.module.css";
-export default function Catigories({ catigories, catigory, HandleCatigory }) {
+export default function Catigorys({ catigorys, catigory, HandleCatigory }) {
   return (
-    <div className={styles.catigories_box}>
-      {catigories.map((item) => {
+    <div className={styles.catigorys_box}>
+      {catigorys.map((item) => {
         return (
           <button
             key={item}
