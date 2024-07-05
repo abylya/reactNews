@@ -4,117 +4,87 @@ import styles from "./styles.module.css";
 import { getNews } from "../api/newsApi";
 import { getCatigorys } from "../api/getCatigorys";
 import NewsList from "../components/newsList/NewsList";
-import Skeleton from "../components/Skeleton/Skeleton";
 import Pagination from "../components/pagination/Pagination";
 import Catigorys from "../components/catigorys/Catigorys";
 import Search from "../components/serch/Search";
 import usDebounce from "../helps/usDebounce";
-//import Catigories from "./../components/catigories/Catigories";
+import { PAGE_SIZE, TOTAL_PAGE } from "../constants/constants.";
+import { useFetch } from "../helps/useFetch";
+import { usFilter } from "../helps/usFilter";
 
 const Main = () => {
-  const [news, setNews] = useState([]);
-  const [isLoding, setIsLoding] = useState(true);
-  const [currenPage, setCurrentPage] = useState(1);
-  const [catigorys, setCatigorys] = useState(["All"]);
-  const [currentCatigor, setCurrentCatigor] = useState("All");
-  const [keywords, setKeywords] = useState("");
+  const { filter, chengFilter } = usFilter({
+    currenPage: 1,
+    category: null,
+    keywords: null,
+  });
 
-  const totalPage = 10;
-  const pageSize = 10;
-
-  const debounceKeywords = usDebounce(keywords, 2000);
+  const debounceKeywords = usDebounce(filter.keywords, 2000);
   //console.log(debounceKeywords);
-  async function fechNews() {
-    try {
-      setIsLoding(true);
 
-      const respons = await getNews({
-        currenPage: currenPage,
-        pageSize: pageSize,
-        category: currentCatigor === "All" ? null : currentCatigor,
-        keywords: debounceKeywords,
-      });
-      //console.log(respons.articles);
-      setNews(respons.news);
-      //console.log(news);
-      setIsLoding(false);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  let { data, isLoding } = useFetch(getNews, {
+    currenPage: filter.currenPage,
+    pageSize: PAGE_SIZE,
+    category: filter.category,
+    keywords: debounceKeywords,
+  });
 
-  useEffect(() => {
-    fechNews();
-  }, [currenPage, currentCatigor, debounceKeywords]);
-
-  async function fechCategorys() {
-    try {
-      const respons = await getCatigorys();
-      //console.log(respons.articles);
-      setCatigorys(["All", ...respons.categories]);
-      //console.log(news);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    fechCategorys();
-  }, []);
+  let { data: dataCategorys } = useFetch(getCatigorys);
+  //console.log(dataCategorys);
 
   function handleNextPage() {
-    if (currenPage < totalPage) {
-      setCurrentPage(currenPage + 1);
+    if (filter.currenPage < TOTAL_PAGE) {
+      chengFilter("currenPage", filter.currenPage + 1);
     }
   }
 
   function handlePrevPage() {
-    if (currenPage > 1) {
-      setCurrentPage(currenPage - 1);
+    if (filter.currenPage > 1) {
+      chengFilter("currenPage", filter.currenPage - 1);
     }
   }
   function handlePage(pageNumber) {
-    setCurrentPage(pageNumber);
+    chengFilter("currenPage", pageNumber);
   }
 
   function HandleCatigory(catigory) {
-    setCurrentCatigor(catigory);
+    chengFilter("category", catigory);
   }
 
   return (
     <main className={styles.main}>
-      {isLoding ? (
-        <Skeleton count={10}></Skeleton>
-      ) : (
-        <>
-          <Search keywords={keywords} setKeywords={setKeywords}></Search>
+      <>
+        <Search keywords={filter.keywords} setKeywords={chengFilter}></Search>
+        {dataCategorys ? (
           <Catigorys
-            catigorys={catigorys}
-            catigory={currentCatigor}
+            catigorys={dataCategorys?.categories}
+            catigory={filter.category}
             HandleCatigory={HandleCatigory}
           ></Catigorys>
-          <NewsBanner item={news.length > 0 ? news[0] : null}> </NewsBanner>
-          {news.length > 0 ? (
-            <Pagination
-              handlePage={handlePage}
-              handlePrevPage={handlePrevPage}
-              handleNextPage={handleNextPage}
-              currenPage={currenPage}
-              totalPage={totalPage}
-            ></Pagination>
-          ) : null}
-          {news.length > 0 ? <NewsList newsList={news}></NewsList> : null}
-          {news.length > 0 ? (
-            <Pagination
-              handlePage={handlePage}
-              handlePrevPage={handlePrevPage}
-              handleNextPage={handleNextPage}
-              currenPage={currenPage}
-              totalPage={totalPage}
-            ></Pagination>
-          ) : null}
-        </>
-      )}
+        ) : null}
+        <NewsBanner
+          isLoding={isLoding}
+          item={data && data.news && data.news[0]}
+        ></NewsBanner>
+
+        <Pagination
+          handlePage={handlePage}
+          handlePrevPage={handlePrevPage}
+          handleNextPage={handleNextPage}
+          currenPage={filter.currenPage}
+          totalPage={TOTAL_PAGE}
+        ></Pagination>
+
+        <NewsList isLoding={isLoding} newsList={data?.news}></NewsList>
+
+        <Pagination
+          handlePage={handlePage}
+          handlePrevPage={handlePrevPage}
+          handleNextPage={handleNextPage}
+          currenPage={filter.currenPage}
+          totalPage={TOTAL_PAGE}
+        ></Pagination>
+      </>
     </main>
   );
 };

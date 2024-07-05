@@ -1,7 +1,8 @@
 import formatTimeAgo from "../../helps/formatTimeAgo";
+import withSceleton from "../../helps/hocs/withSceleton";
 import Imag from "../imag/Imag";
 import styles from "./styles.module.css";
-export default function NewsBanner({ item }) {
+function NewsBanner({ item }) {
   //console.log(item);
   if (item) {
     return (
@@ -24,3 +25,5 @@ export default function NewsBanner({ item }) {
     </div>;
   }
 }
+const NewsBannerWithSkeleton = withSceleton(NewsBanner, "banner", 1);
+export default NewsBannerWithSkeleton;
