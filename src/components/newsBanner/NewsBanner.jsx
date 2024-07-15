@@ -1,22 +1,24 @@
 import formatTimeAgo from "../../helps/formatTimeAgo";
-import withSceleton from "../../helps/hocs/withSceleton";
 import Imag from "../imag/Imag";
 import styles from "./styles.module.css";
-function NewsBanner({ item }) {
+export default function NewsBanner({ news }) {
   //console.log(item);
-  if (item) {
+  if (news) {
     return (
-      <div className={styles.newsbanner}>
-        <Imag imgSrc={item?.image}></Imag>
+      <div className={styles.news}>
+        <div className={styles.news_img_block}>
+          <Imag imgSrc={news.image} imgClass="smoll_img_block"></Imag>
+        </div>
+        <div className={styles.content}>
+          <h4 className={styles.title}>{news.title}</h4>
 
-        <h3 className={styles.title}>{item.title}</h3>
-
-        <footer className={styles.footer}>
-          <time dateTime={item.publish_date}>
-            {formatTimeAgo(item.publish_date) + " "}
-          </time>
-          Автор: <cite>{item.author || "anonim"}</cite>
-        </footer>
+          <footer className={styles.footer}>
+            <time dateTime={news.published}>
+              {formatTimeAgo(news.published) + " "}
+            </time>
+            Автор: <cite>{news.author || "anonim"}</cite>
+          </footer>
+        </div>
       </div>
     );
   } else {
@@ -25,5 +27,3 @@ function NewsBanner({ item }) {
     </div>;
   }
 }
-const NewsBannerWithSkeleton = withSceleton(NewsBanner, "banner", 1);
-export default NewsBannerWithSkeleton;

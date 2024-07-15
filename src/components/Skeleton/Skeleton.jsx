@@ -1,16 +1,16 @@
 import styles from "./styles.module.css";
-export default function Skeleton({ count = 1, type = "banner" }) {
+export default function Skeleton({ count = 1, direction }) {
   return (
     <>
-      {count > 1 ? (
-        <ul className={styles.list}>
-          {[...Array(count)].map((_, index) => {
-            return <li key={index} className={styles.item}></li>;
-          })}
-        </ul>
-      ) : (
-        <div className={styles.banner}></div>
-      )}
+      <ul className={direction === "colum" ? styles.columList : styles.rowList}>
+        {[...Array(count)].map((_, index) => {
+          return (
+            <li key={index} className={styles.item}>
+              banner
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }

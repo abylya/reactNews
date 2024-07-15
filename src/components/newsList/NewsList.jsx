@@ -1,16 +1,19 @@
 import News from "../news/News";
 import styles from "./styles.module.css";
-import NewsBannerWithSkeleton from "./../newsBanner/NewsBanner";
 import withSceleton from "../../helps/hocs/withSceleton";
 function NewsList({ newsList }) {
   //console.log("news");
   if (newsList) {
     return (
-      <div className={styles.list}>
+      <ul className={styles.list}>
         {newsList?.map((item) => {
-          return <News key={item.id} news={item}></News>;
+          return (
+            <li key={item.id}>
+              <News news={item}></News>
+            </li>
+          );
         })}
-      </div>
+      </ul>
     );
   } else {
     <div div className={styles.list}>
@@ -18,5 +21,5 @@ function NewsList({ newsList }) {
     </div>;
   }
 }
-const NewsListWithSkeleton = withSceleton(NewsList, "item", 10);
+const NewsListWithSkeleton = withSceleton(NewsList, 10, "colum");
 export default NewsListWithSkeleton;

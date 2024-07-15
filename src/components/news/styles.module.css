@@ -16,6 +16,10 @@
     flex-direction: column;
     gap: 16px;
 
+    .title{
+        font-size:clamp(1rem, 3vw, 2rem) ;
+    }
+
 }
 footer{
     font-size: clamp(0.75rem, 0.602rem + 0.74vw, 1.25rem);

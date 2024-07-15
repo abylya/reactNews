@@ -1,4 +1,5 @@
 .catigorys_box{
+    align-self: flex-start;
     display: flex;
     flex-direction: row;
     gap:8px;

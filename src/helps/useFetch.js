@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export function useFetch(fetchFn, param) {
-  let [isloading, setIsloading] = useState(true);
+  let [isLoading, setIsisLoading] = useState(true);
   let [data, setData] = useState(null);
   let [err, setErr] = useState(null);
 
@@ -10,16 +10,16 @@ export function useFetch(fetchFn, param) {
   useEffect(() => {
     (async () => {
       try {
-        isloading = true;
+        setIsisLoading(true);
         let rez = await fetchFn(param);
         setData(rez);
       } catch (error) {
         setErr(error);
       } finally {
-        setIsloading(false);
+        setIsisLoading(false);
       }
     })();
   }, [fetchFn, strParam]);
   //console.log(data);
-  return { data, isloading, err };
+  return { data, isLoading, err };
 }
