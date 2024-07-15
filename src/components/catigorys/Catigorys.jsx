@@ -1,8 +1,18 @@
 import styles from "./styles.module.css";
 export default function Catigorys({ catigorys, catigory, HandleCatigory }) {
+  // console.log(catigorys);
   return (
     <div className={styles.catigorys_box}>
-      {catigorys.map((item) => {
+      <button
+        className={"All" === catigory ? styles.activ : styles.catigory}
+        onClick={() => {
+          HandleCatigory("All");
+        }}
+      >
+        All
+      </button>
+
+      {catigorys?.map((item) => {
         return (
           <button
             key={item}

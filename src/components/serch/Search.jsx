@@ -7,8 +7,8 @@ export default function Search({ keywords, setKeywords }) {
         type="text"
         className={styles.input}
         placeholder="java script"
-        value={keywords}
-        onChange={(e) => setKeywords(e.target.value)}
+        value={keywords || ""}
+        onChange={(e) => setKeywords("keywords", e.target.value)}
       />
     </div>
   );

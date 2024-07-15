@@ -26,6 +26,8 @@ body {
   margin: 0;
   font-family: "Inter","sans-serif";
   font-size: clamp(0.875rem, 0.727rem + 0.74vw, 1.375rem);
+  padding: 10px;
+  border: 3px solid black;
 }
 
 /**
@@ -305,6 +307,7 @@ textarea {
 
 [type="search"] {
   -webkit-appearance: textfield; /* 1 */
+  appearance: textfield;
   outline-offset: -2px; /* 2 */
 }
 
@@ -366,4 +369,7 @@ template {
 
 ul{
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
+

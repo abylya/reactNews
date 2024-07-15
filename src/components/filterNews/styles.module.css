@@ -1,0 +1,14 @@
+.section{
+    flex: 1 1 385px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: aliceblue;
+    border-bottom: 3px solid #3310de;
+    padding: 15px;
+    overflow: hidden;
+
+}
+
