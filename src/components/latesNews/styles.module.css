@@ -2,7 +2,13 @@
     box-sizing: border-box;
     flex: 1 1 385px;   
     padding: 0;
-    max-height: 1200px;
-    overflow-y: auto;
+
     
+}
+
+@media (min-widh:768px) {
+    .section {
+        max-height: 1200px;
+        overflow-y: auto;
+    }
 }
