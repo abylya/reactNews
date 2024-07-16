@@ -1,18 +1,31 @@
 import { getCatigorys } from "../../api/getCatigorys";
-import { TOTAL_PAGE } from "../../constants/constants.";
+import { getNews } from "../../api/newsApi";
+import { PAGE_SIZE, TOTAL_PAGE } from "../../constants/constants.";
+import usDebounce from "../../helps/usDebounce";
 import { useFetch } from "../../helps/useFetch";
+import { usFilter } from "../../helps/usFilter";
 import Catigorys from "../catigorys/Catigorys";
 import NewsList from "../newsList/NewsList";
-import Pagination from "../pagination/Pagination";
+import PginationWraper from "../paginationWraper/PaginationWraper";
 import Search from "../serch/Search";
 import styles from "./styles.module.css";
 
-export default function FilterNews({
-  filter,
-  chengFilter,
-  isLoading,
-  newsList,
-}) {
+export default function FilterNews() {
+  const { filter, chengFilter } = usFilter({
+    currenPage: 1,
+    category: null,
+    keywords: null,
+  });
+
+  const debounceKeywords = usDebounce(filter.keywords, 2000);
+  //console.log(debounceKeywords);
+
+  let { data, isLoading } = useFetch(getNews, {
+    currenPage: filter.currenPage,
+    pageSize: PAGE_SIZE,
+    category: filter.category,
+    keywords: debounceKeywords,
+  });
   let { data: dataCategorys } = useFetch(getCatigorys);
   //console.log(dataCategorys);
 
@@ -45,21 +58,17 @@ export default function FilterNews({
         ></Catigorys>
       ) : null}
 
-      <Pagination
+      <PginationWraper
+        top
+        bottom
         handlePage={handlePage}
         handlePrevPage={handlePrevPage}
         handleNextPage={handleNextPage}
         currenPage={filter.currenPage}
         totalPage={TOTAL_PAGE}
-      ></Pagination>
-      <NewsList isLoading={isLoading} newsList={newsList}></NewsList>
-      <Pagination
-        handlePage={handlePage}
-        handlePrevPage={handlePrevPage}
-        handleNextPage={handleNextPage}
-        currenPage={filter.currenPage}
-        totalPage={TOTAL_PAGE}
-      ></Pagination>
+      >
+        <NewsList isLoading={isLoading} newsList={data && data.news}></NewsList>
+      </PginationWraper>
     </section>
   );
 }
