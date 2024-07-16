@@ -31,6 +31,7 @@ export const getLatesNews = async () => {
     const respons = await axios.get(`${API_BASE}latest-news`, {
       params: {
         languages: "us",
+        page_size: 20,
         apiKey: API_KEY,
       },
     });
