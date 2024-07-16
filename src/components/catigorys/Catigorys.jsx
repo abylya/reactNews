@@ -1,8 +1,9 @@
+import { forwardRef } from "react";
 import styles from "./styles.module.css";
-export default function Catigorys({ catigorys, catigory, HandleCatigory }) {
+const Catigorys = forwardRef(({ catigorys, catigory, HandleCatigory }, ref) => {
   // console.log(catigorys);
   return (
-    <div className={styles.catigorys_box}>
+    <div ref={ref} className={styles.catigorys_box}>
       <button
         className={"All" === catigory ? styles.activ : styles.catigory}
         onClick={() => {
@@ -27,4 +28,7 @@ export default function Catigorys({ catigorys, catigory, HandleCatigory }) {
       })}
     </div>
   );
-}
+});
+
+Catigorys.displayName = "Catigorys";
+export default Catigorys;

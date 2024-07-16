@@ -1,9 +1,9 @@
 .catigorys_box{
-    align-self: flex-start;
+    /* align-self: flex-start; */
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     gap:8px;
-    overflow: auto;
+    overflow: hidden;
     scrollbar-width: none;
 }
 
