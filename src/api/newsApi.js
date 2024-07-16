@@ -25,3 +25,18 @@ export const getNews = async ({
     console.log(error);
   }
 };
+
+export const getLatesNews = async () => {
+  try {
+    const respons = await axios.get(`${API_BASE}latest-news`, {
+      params: {
+        languages: "us",
+        apiKey: API_KEY,
+      },
+    });
+    //console.log(respons.data);
+    return respons.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
