@@ -8,6 +8,7 @@ import Catigorys from "../catigorys/Catigorys";
 import NewsList from "../newsList/NewsList";
 import PginationWraper from "../paginationWraper/PaginationWraper";
 import Search from "../serch/Search";
+import Slider from "../slider/Slider";
 import styles from "./styles.module.css";
 
 export default function FilterNews() {
@@ -50,12 +51,15 @@ export default function FilterNews() {
   return (
     <section className={styles.section}>
       <Search keywords={filter.keywords} setKeywords={chengFilter}></Search>
+
       {dataCategorys ? (
-        <Catigorys
-          catigorys={dataCategorys?.categories}
-          catigory={filter.category}
-          HandleCatigory={HandleCatigory}
-        ></Catigorys>
+        <Slider>
+          <Catigorys
+            catigorys={dataCategorys?.categories}
+            catigory={filter.category}
+            HandleCatigory={HandleCatigory}
+          ></Catigorys>
+        </Slider>
       ) : null}
 
       <PginationWraper
