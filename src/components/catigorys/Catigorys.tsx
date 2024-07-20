@@ -1,6 +1,12 @@
-import { forwardRef } from "react";
+import { ForwardedRef, forwardRef } from "react";
 import styles from "./styles.module.css";
-const Catigorys = forwardRef(({ catigorys, catigory, HandleCatigory }, ref) => {
+import { CatigoriysType } from "../interfeces";
+interface Props{
+  catigorys:CatigoriysType[];
+  catigory:CatigoriysType;
+  HandleCatigory:(catigory:CatigoriysType)=>void
+}
+const Catigorys = forwardRef(({ catigorys, catigory, HandleCatigory }:Props, ref:ForwardedRef<HTMLDivElement>) => {
   // console.log(catigorys);
   return (
     <div ref={ref} className={styles.catigorys_box}>

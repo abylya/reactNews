@@ -1,7 +1,11 @@
 import NewsBanner from "../newsBanner/NewsBanner";
 import styles from "./styles.module.css";
 import withSceleton from "../../helps/hocs/withSceleton";
-function BannerList({ newsList }) {
+import { INews } from "../interfeces";
+interface Props{
+  newsList?:INews[]|null;
+}
+function BannerList({ newsList }:Props) {
   return (
     <ul className={styles.list}>
       {newsList?.map((banner) => {
@@ -14,5 +18,5 @@ function BannerList({ newsList }) {
     </ul>
   );
 }
-const BannerListWithSkeleton = withSceleton(BannerList, 10, "row");
+const BannerListWithSkeleton = withSceleton<Props>(BannerList, 10, "row");
 export default BannerListWithSkeleton;
