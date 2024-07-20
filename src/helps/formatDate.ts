@@ -1,7 +1,7 @@
-export function formatDate(date){
-    const option={
+export function formatDate(date:Date){
+    const option:Intl.DateTimeFormatOptions={
         year:"numeric",
-        mountd:"long",
+        month:"long",
         weekday:"long",
         day:"numeric"
     }

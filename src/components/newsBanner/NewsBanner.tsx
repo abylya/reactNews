@@ -1,7 +1,12 @@
 import formatTimeAgo from "../../helps/formatTimeAgo";
 import Imag from "../imag/Imag";
+import { INews } from "../interfeces";
 import styles from "./styles.module.css";
-export default function NewsBanner({ news }) {
+
+interface Props{
+  news:INews;
+}
+export default function NewsBanner({ news }:Props) {
   //console.log(item);
   if (news) {
     return (
@@ -22,7 +27,7 @@ export default function NewsBanner({ news }) {
       </div>
     );
   } else {
-    <div div className={styles.newsbanner}>
+    <div  className={styles.newsbanner}>
       <h3 className={styles.title}>no content</h3>
     </div>;
   }

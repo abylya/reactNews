@@ -1,7 +1,12 @@
 import formatTimeAgo from "../../helps/formatTimeAgo";
 import Imag from "../imag/Imag";
+import { INews } from "../interfeces";
 import styles from "./styles.module.css";
-export default function News({ news }) {
+interface Props{
+  news:INews
+}
+
+export default function News({ news }:Props) {
   return (
     <div className={styles.news}>
       <div className={styles.news_img_block}>
