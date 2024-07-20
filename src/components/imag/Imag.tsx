@@ -1,7 +1,11 @@
 
 
 import styles from "./styles.module.css";
-export default function Imag({imgSrc,imgClass}) {
+interface Props{
+    imgSrc:string;
+    imgClass:string;
+  }
+export default function Imag({imgSrc,imgClass}:Props) {
     return(   
     
         <div className={imgClass?styles[imgClass]:styles.imgBlock}>
