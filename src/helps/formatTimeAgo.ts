@@ -1,4 +1,4 @@
-export default function formatTimeAgo(dateStr) {
+export default function formatTimeAgo(dateStr:string) {
   const now = new Date();
   const publishDate = new Date(dateStr);
   //console.log(dateStr);

@@ -1,6 +1,13 @@
 .section{
-   box-sizing: border-box;
-    flex: 1 1 385px;
-    
-padding: 0;
+    box-sizing: border-box;
+    flex: 1 1 385px;   
+    padding: 0;
+  
+}
+
+@media (min-width:768px) {
+    .section {
+        max-height: 1200px;
+        overflow-y: auto;
+    }
 }

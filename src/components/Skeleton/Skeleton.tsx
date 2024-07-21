@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-export default function Skeleton({ count = 1, direction }) {
+export default function Skeleton({ count = 1, direction='colum' }) {
   return (
     <>
       <ul className={direction === "colum" ? styles.columList : styles.rowList}>
